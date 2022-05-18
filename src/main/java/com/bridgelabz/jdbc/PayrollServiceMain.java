@@ -5,9 +5,11 @@ import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Enumeration;
+import java.util.Scanner;
+
 /*
  *Author: Prasad
- * Ability to create a payroll service database and have java program connect to database
+ *Ability for Employee Payroll Service to retrieve the Employee Payroll from the Database
  */
 public class PayrollServiceMain {
     public static void main(String[] args) {
@@ -34,7 +36,7 @@ public class PayrollServiceMain {
         String jdbcURL = "jdbc:mysql://localhost:3306/payroll_service1";
         String uName = "root";
         String password = "Prasad@321";
-        Connection connection;
+        Connection connection = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Driver loaded");
@@ -48,5 +50,27 @@ public class PayrollServiceMain {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        //object
+        PayrollService payrollService = new PayrollService();
+        Scanner scanner = new Scanner(System.in);
+        boolean check = true;
+        do{
+            System.out.println("1.To read database\n2.exit");
+            System.out.println("Enter choice");
+            int choice = scanner.nextInt();
+            switch (choice){
+                case 1 :
+                    payrollService.readData(connection);
+                    break;
+
+                case 2:
+                    check = false;
+                    break;
+
+                default:
+                    System.out.println("Enter valid choice");
+            }
+        } while (check);
     }
 }
