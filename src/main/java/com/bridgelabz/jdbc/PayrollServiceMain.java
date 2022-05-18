@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /*
  *Author: Prasad
- *Ability to update the salary i.e. the base pay for Employee Terisa to 3000000.00 and sync it with Database
+ *Create PreparedStatement to retrieve payroll data by name
  */
 public class PayrollServiceMain {
     public static void main(String[] args) {
@@ -61,7 +61,7 @@ public class PayrollServiceMain {
         Scanner scanner = new Scanner(System.in);
         boolean check = true;
         do{
-            System.out.println("1.To read database\n2.Update Salary\n3.exit");
+            System.out.println("1.To read database\n2.Update Salary\n3.Retrieve payroll data with name\n4.exit");
             System.out.println("Enter choice");
             int choice = scanner.nextInt();
             switch (choice){
@@ -74,6 +74,10 @@ public class PayrollServiceMain {
                     break;
 
                 case 3:
+                    payrollService.getEmployeePayrollWithName("Terisa");
+                    break;
+
+                case 4:
                     check = false;
                     break;
 
