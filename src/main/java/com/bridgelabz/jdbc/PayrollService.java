@@ -4,10 +4,13 @@ import com.mysql.cj.protocol.Resultset;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
+
 /*
  *Author: Prasad
- *Create PreparedStatement to retrieve payroll data by name
+ *Ability to retrieve all employees who have joined in a particular data range from the payroll service database
  */
 public class PayrollService {
     PayrollServiceMain payrollServiceMain = new PayrollServiceMain();
@@ -92,6 +95,22 @@ public class PayrollService {
     public void getEmployeePayrollWithName(String name) {
         try (Connection connection = payrollServiceMain.getConnection()) {
             String querry = "select * from employee_payroll where name = '" + name + "'";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(querry);
+            while (resultSet.next()) {
+                System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2) + " " + resultSet.getDouble(3) + " " + resultSet.getDate(4));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
+     *Method to retrieve data based on date
+     */
+    public void getEmployeePayrollWithDate(){
+        try (Connection connection = payrollServiceMain.getConnection()) {
+            String querry = "select * from employee_payroll where start between cast('2018-01-01' as date) and date(now());";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(querry);
             while (resultSet.next()) {

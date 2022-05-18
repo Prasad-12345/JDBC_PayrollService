@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /*
  *Author: Prasad
- *Create PreparedStatement to retrieve payroll data by name
+ *Ability to retrieve all employees who have joined in a particular data range from the payroll service database
  */
 public class PayrollServiceMain {
     public static void main(String[] args) {
@@ -61,7 +61,7 @@ public class PayrollServiceMain {
         Scanner scanner = new Scanner(System.in);
         boolean check = true;
         do{
-            System.out.println("1.To read database\n2.Update Salary\n3.Retrieve payroll data with name\n4.exit");
+            System.out.println("1.To read database\n2.Update Salary\n3.Retrieve payroll data with name\n4.Retrieve Data by date\n5.exit");
             System.out.println("Enter choice");
             int choice = scanner.nextInt();
             switch (choice){
@@ -78,6 +78,10 @@ public class PayrollServiceMain {
                     break;
 
                 case 4:
+                    payrollService.getEmployeePayrollWithDate();
+                    break;
+
+                case 5:
                     check = false;
                     break;
 
