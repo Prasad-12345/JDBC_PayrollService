@@ -9,13 +9,14 @@ import java.util.Scanner;
 
 /*
  *Author: Prasad
- *Ability for Employee Payroll Service to retrieve the Employee Payroll from the Database
+ *Ability to update the salary i.e. the base pay for Employee Terisa to 3000000.00 and sync it with Database
  */
 public class PayrollServiceMain {
     public static void main(String[] args) {
         //object
         PayrollServiceMain payrollServiceMain = new PayrollServiceMain();
         payrollServiceMain.getConnection();
+        payrollServiceMain.getMenu();
     }
 
     /*
@@ -32,7 +33,7 @@ public class PayrollServiceMain {
     /*
      *Method to get connection between java and database
      */
-    public void getConnection(){
+    public Connection getConnection(){
         String jdbcURL = "jdbc:mysql://localhost:3306/payroll_service1";
         String uName = "root";
         String password = "Prasad@321";
@@ -50,21 +51,29 @@ public class PayrollServiceMain {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+       // return connection;
+        return connection;
+    }
 
+    public void getMenu(){
         //object
         PayrollService payrollService = new PayrollService();
         Scanner scanner = new Scanner(System.in);
         boolean check = true;
         do{
-            System.out.println("1.To read database\n2.exit");
+            System.out.println("1.To read database\n2.Update Salary\n3.exit");
             System.out.println("Enter choice");
             int choice = scanner.nextInt();
             switch (choice){
                 case 1 :
-                    payrollService.readData(connection);
+                    payrollService.readData();
                     break;
 
-                case 2:
+                case 2 :
+                    payrollService.updatePayrollService("Terisa", 3000000.00);
+                    break;
+
+                case 3:
                     check = false;
                     break;
 
