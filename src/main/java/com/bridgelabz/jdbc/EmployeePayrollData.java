@@ -1,5 +1,6 @@
 package com.bridgelabz.jdbc;
 
+import java.io.Reader;
 import java.util.Date;
 /*
  *Author: Prasad
@@ -7,6 +8,7 @@ import java.util.Date;
 public class EmployeePayrollData {
     private int id;
     private String name;
+    private String gender;
     private double salary;
     private Date date;
 
@@ -40,5 +42,13 @@ public class EmployeePayrollData {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

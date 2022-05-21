@@ -9,9 +9,11 @@ import java.util.Scanner;
 
 /*
  *Author: Prasad
- *Ability to retrieve all employees who have joined in a particular data range from the payroll service database
+ *Ability to add a new Employee to the Payroll
  */
 public class PayrollServiceMain {
+    //object
+   // PayrollService payrollService = new PayrollService();
     public static void main(String[] args) {
         //object
         PayrollServiceMain payrollServiceMain = new PayrollServiceMain();
@@ -56,12 +58,11 @@ public class PayrollServiceMain {
     }
 
     public void getMenu(){
-        //object
         PayrollService payrollService = new PayrollService();
         Scanner scanner = new Scanner(System.in);
         boolean check = true;
         do{
-            System.out.println("1.To read database\n2.Update Salary\n3.Retrieve payroll data with name\n4.Retrieve Data by date\n5.exit");
+            System.out.println("1.To read database\n2.Update Salary\n3.Retrieve payroll data with name\n4.Retrieve Data by date\n5.Add employee to payroll servce\n5.exit");
             System.out.println("Enter choice");
             int choice = scanner.nextInt();
             switch (choice){
@@ -82,6 +83,10 @@ public class PayrollServiceMain {
                     break;
 
                 case 5:
+                    payrollService.addNewEmployeeToPayroll();
+                    break;
+
+                case 6:
                     check = false;
                     break;
 
